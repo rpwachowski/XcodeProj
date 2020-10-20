@@ -1,5 +1,4 @@
 import Foundation
-import XcodeProjCExt
 
 /// String that includes a comment
 struct CommentedString {
@@ -43,13 +42,7 @@ struct CommentedString {
         case "true": return "YES"
         default: break
         }
-
-        return string.withCString { buffer in
-            let esc = XCPEscapedString(buffer)!
-            let newString = String(cString: esc)
-            free(UnsafeMutableRawPointer(mutating: esc))
-            return newString
-        }
+        return string.withCString(escapedString)
     }
 }
 

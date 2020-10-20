@@ -21,7 +21,6 @@
  */
 
 import Foundation
-import XcodeProjCExt
 
 extension String {
     var md5: String {
@@ -30,8 +29,7 @@ extension String {
         }
         return data.withUnsafeBytes { bufferPointer in
             let castedBuffer = bufferPointer.bindMemory(to: Int8.self)
-            let hex = XCPComputeMD5(castedBuffer.baseAddress, Int32(data.count))!
-            return String(cString: hex, encoding: .ascii)!
+            return computeMD5(data: castedBuffer.baseAddress!, length: Int32(data.count))
         }
     }
 }

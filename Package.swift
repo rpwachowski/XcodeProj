@@ -13,12 +13,7 @@ let package = Package(
         .package(url: "https://github.com/kylef/PathKit", .upToNextMinor(from: "1.0.0")),
     ],
     targets: [
-        .target(name: "XcodeProj",
-                dependencies: [
-                    "XcodeProjCExt",
-                    "PathKit",
-                    "AEXML",
-                ]),
-        .testTarget(name: "XcodeProjTests", dependencies: ["XcodeProj"]),
+        .target(name: "XcodeProj", dependencies: ["AEXML", "PathKit"]),
+        .testTarget(name: "XcodeProjTests", dependencies: ["XcodeProj", "XcodeProjCExt"]),
     ]
 )
